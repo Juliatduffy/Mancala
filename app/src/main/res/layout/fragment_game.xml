@@ -6,824 +6,746 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/background"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/brown_background">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/brown_background"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <EditText
-        android:id="@+id/editPitIndex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Pit (0–12)"
-        android:inputType="number"
-        android:padding="8dp"
-        android:textColor="@color/white"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/playMove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Play Move"
-        android:padding="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/editPitIndex" />
-
-    <!-- Board image in the background -->
-    <ImageView
-        android:id="@+id/boardImage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/board"
-        android:background="@null"
-        app:layout_constraintStart_toStartOf="@id/col1"
-        app:layout_constraintEnd_toEndOf="@id/col9"
-        app:layout_constraintTop_toTopOf="@id/guide_top_row"
-        app:layout_constraintBottom_toBottomOf="@id/guide_bottom_row" />
-
-    <!-- Horizontal guidelines for rows -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide_top_row"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide_mid_row"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.50" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guide_bottom_row"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.82" />
-
-    <!-- Vertical guidelines for columns -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col0"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.00" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col1"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col2"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.17" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col3"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.28" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col4"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.39" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col5"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col6"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.61" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col7"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.72" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col8"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.83" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col9"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/col10"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="1.00" />
-
-    <!-- Store (left) becomes pit13 -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/store_left_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.07" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/store_left_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.16" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/store_left_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.19" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/store_left_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.81" />
-
-    <FrameLayout
-        android:id="@+id/pit13"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:paddingTop="20dp"
-        android:paddingBottom="30dp"
-        app:layout_constraintStart_toStartOf="@id/store_left_left"
-        app:layout_constraintEnd_toStartOf="@id/store_left_right"
-        app:layout_constraintTop_toTopOf="@id/store_left_top"
-        app:layout_constraintBottom_toBottomOf="@id/store_left_bottom">
+        <!-- Board image in the background -->
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/long_hole"
+            android:id="@+id/boardImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Store (right) becomes pit6 -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/store_right_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.84" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/store_right_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.93" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/store_right_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.19" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/store_right_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.81" />
-
-    <FrameLayout
-        android:id="@+id/pit6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:paddingTop="20dp"
-        android:paddingBottom="30dp"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/store_right_left"
-        app:layout_constraintEnd_toStartOf="@id/store_right_right"
-        app:layout_constraintTop_toTopOf="@id/store_right_top"
-        app:layout_constraintBottom_toBottomOf="@id/store_right_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/long_hole"
-            android:scaleType="fitXY"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- ──────────────────────────────────────────────────────────────────── -->
-    <!-- TOP ROW PITS (left to right stay pit12…pit7)  -->
-    <!-- ──────────────────────────────────────────────────────────────────── -->
-
-    <!-- Top‐row pit12 (leftmost top) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit0_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.18" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit0_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.27" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit0_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit0_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48" />
-
-    <FrameLayout
-        android:id="@+id/pit12"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit0_left"
-        app:layout_constraintEnd_toStartOf="@id/pit0_right"
-        app:layout_constraintTop_toTopOf="@id/pit0_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit0_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Top‐row pit11 -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit1_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.29" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit1_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.38" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit1_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit1_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48" />
-
-    <FrameLayout
-        android:id="@+id/pit11"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit1_left"
-        app:layout_constraintEnd_toStartOf="@id/pit1_right"
-        app:layout_constraintTop_toTopOf="@id/pit1_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit1_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Top‐row pit10 -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit2_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.40" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit2_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.49" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit2_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit2_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48" />
-
-    <FrameLayout
-        android:id="@+id/pit10"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit2_left"
-        app:layout_constraintEnd_toStartOf="@id/pit2_right"
-        app:layout_constraintTop_toTopOf="@id/pit2_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit2_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Top‐row pit9 -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit3_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.51" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit3_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.60" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit3_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit3_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48" />
-
-    <FrameLayout
-        android:id="@+id/pit9"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit3_left"
-        app:layout_constraintEnd_toStartOf="@id/pit3_right"
-        app:layout_constraintTop_toTopOf="@id/pit3_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit3_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Top‐row pit8 -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit4_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.62" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit4_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.71" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit4_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit4_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48" />
-
-    <FrameLayout
-        android:id="@+id/pit8"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit4_left"
-        app:layout_constraintEnd_toStartOf="@id/pit4_right"
-        app:layout_constraintTop_toTopOf="@id/pit4_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit4_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Top‐row pit7 (rightmost top) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit5_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.73" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit5_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.82" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit5_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit5_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48" />
-
-    <FrameLayout
-        android:id="@+id/pit7"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit5_left"
-        app:layout_constraintEnd_toStartOf="@id/pit5_right"
-        app:layout_constraintTop_toTopOf="@id/pit5_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit5_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- ──────────────────────────────────────────────────────────────────── -->
-    <!-- BOTTOM ROW PITS (left to right become pit0…pit5)  -->
-    <!-- ──────────────────────────────────────────────────────────────────── -->
-
-    <!-- Bottom‐row pit0 (originally pit1) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit6_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.18" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit6_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.27" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit6_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit6_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76" />
-
-    <FrameLayout
-        android:id="@+id/pit0"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit6_left"
-        app:layout_constraintEnd_toStartOf="@id/pit6_right"
-        app:layout_constraintTop_toTopOf="@id/pit6_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit6_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Bottom‐row pit1 (originally pit2) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit7_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.29" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit7_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.38" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit7_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit7_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76" />
-
-    <FrameLayout
-        android:id="@+id/pit1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit7_left"
-        app:layout_constraintEnd_toStartOf="@id/pit7_right"
-        app:layout_constraintTop_toTopOf="@id/pit7_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit7_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Bottom‐row pit2 (originally pit3) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit8_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.40" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit8_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.49" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit8_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit8_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76" />
-
-    <FrameLayout
-        android:id="@+id/pit2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit8_left"
-        app:layout_constraintEnd_toStartOf="@id/pit8_right"
-        app:layout_constraintTop_toTopOf="@id/pit8_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit8_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Bottom‐row pit3 (originally pit4) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit9_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.51" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit9_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.60" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit9_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit9_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76" />
-
-    <FrameLayout
-        android:id="@+id/pit3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit9_left"
-        app:layout_constraintEnd_toStartOf="@id/pit9_right"
-        app:layout_constraintTop_toTopOf="@id/pit9_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit9_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Bottom‐row pit4 (originally pit5) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit10_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.62" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit10_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.71" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit10_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit10_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76" />
-
-    <FrameLayout
-        android:id="@+id/pit4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit10_left"
-        app:layout_constraintEnd_toStartOf="@id/pit10_right"
-        app:layout_constraintTop_toTopOf="@id/pit10_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit10_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-    <!-- Bottom‐row pit5 (originally pit6) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit11_left"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.73" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit11_right"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.82" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit11_top"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/pit11_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76" />
-
-    <FrameLayout
-        android:id="@+id/pit5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintStart_toStartOf="@id/pit11_left"
-        app:layout_constraintEnd_toStartOf="@id/pit11_right"
-        app:layout_constraintTop_toTopOf="@id/pit11_top"
-        app:layout_constraintBottom_toBottomOf="@id/pit11_bottom">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/hole"
-            android:scaleType="fitCenter"
-            android:background="@null" />
-    </FrameLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:src="@drawable/board"
+            android:background="@null"
+            app:layout_constraintStart_toStartOf="@id/col1"
+            app:layout_constraintEnd_toEndOf="@id/col9"
+            app:layout_constraintTop_toTopOf="@id/guide_top_row"
+            app:layout_constraintBottom_toBottomOf="@id/guide_bottom_row" />
+
+        <!-- Horizontal guidelines for rows -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_top_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.18" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_mid_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_bottom_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.82" />
+
+        <!-- Vertical guidelines for columns -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col0"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.00" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.17" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.28" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col4"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.39" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col5"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col6"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.61" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col7"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.72" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col8"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.83" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col9"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/col10"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1.00" />
+
+        <!-- Store (left) becomes pit13 -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/store_left_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.07" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/store_left_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.16" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/store_left_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.19" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/store_left_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.81" />
+
+        <FrameLayout
+            android:id="@+id/pit13"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/long_hole"
+            app:layout_constraintStart_toStartOf="@id/store_left_left"
+            app:layout_constraintEnd_toStartOf="@id/store_left_right"
+            app:layout_constraintTop_toTopOf="@id/store_left_top"
+            app:layout_constraintBottom_toBottomOf="@id/store_left_bottom" >
+            <!-- ← No inner ImageView here; the hole is now the FrameLayout’s background -->
+        </FrameLayout>
+
+        <!-- Store (right) becomes pit6 -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/store_right_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.84" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/store_right_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.93" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/store_right_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.19" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/store_right_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.81" />
+
+        <FrameLayout
+            android:id="@+id/pit6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/long_hole"
+            app:layout_constraintStart_toStartOf="@id/store_right_left"
+            app:layout_constraintEnd_toStartOf="@id/store_right_right"
+            app:layout_constraintTop_toTopOf="@id/store_right_top"
+            app:layout_constraintBottom_toBottomOf="@id/store_right_bottom" >
+            <!-- ← No inner ImageView; the long_hole background will always show -->
+        </FrameLayout>
+
+        <!-- ──────────────────────────────────────────────────────────────────── -->
+        <!-- TOP ROW PITS (left to right stay pit12…pit7)  -->
+        <!-- ──────────────────────────────────────────────────────────────────── -->
+
+        <!-- Top‐row pit12 (leftmost top) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit0_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.18" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit0_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.27" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit0_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit0_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.48" />
+
+        <FrameLayout
+            android:id="@+id/pit12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit0_left"
+            app:layout_constraintEnd_toStartOf="@id/pit0_right"
+            app:layout_constraintTop_toTopOf="@id/pit0_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit0_bottom" >
+            <!-- ← hole as background, no inner ImageView -->
+        </FrameLayout>
+
+        <!-- Top‐row pit11 -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit1_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.29" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit1_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.38" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit1_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit1_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.48" />
+
+        <FrameLayout
+            android:id="@+id/pit11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit1_left"
+            app:layout_constraintEnd_toStartOf="@id/pit1_right"
+            app:layout_constraintTop_toTopOf="@id/pit1_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit1_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- Top‐row pit10 -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit2_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.40" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit2_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.49" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit2_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit2_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.48" />
+
+        <FrameLayout
+            android:id="@+id/pit10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit2_left"
+            app:layout_constraintEnd_toStartOf="@id/pit2_right"
+            app:layout_constraintTop_toTopOf="@id/pit2_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit2_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- Top‐row pit9 -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit3_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.51" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit3_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.60" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit3_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit3_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.48" />
+
+        <FrameLayout
+            android:id="@+id/pit9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit3_left"
+            app:layout_constraintEnd_toStartOf="@id/pit3_right"
+            app:layout_constraintTop_toTopOf="@id/pit3_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit3_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- Top‐row pit8 -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit4_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.62" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit4_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.71" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit4_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit4_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.48" />
+
+        <FrameLayout
+            android:id="@+id/pit8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit4_left"
+            app:layout_constraintEnd_toStartOf="@id/pit4_right"
+            app:layout_constraintTop_toTopOf="@id/pit4_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit4_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- Top‐row pit7 (rightmost top) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit5_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.73" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit5_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.82" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit5_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit5_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.48" />
+
+        <FrameLayout
+            android:id="@+id/pit7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit5_left"
+            app:layout_constraintEnd_toStartOf="@id/pit5_right"
+            app:layout_constraintTop_toTopOf="@id/pit5_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit5_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- ──────────────────────────────────────────────────────────────────── -->
+        <!-- BOTTOM ROW PITS (left to right become pit0…pit5)  -->
+        <!-- ──────────────────────────────────────────────────────────────────── -->
+
+        <!-- Bottom‐row pit0 (originally pit1) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit6_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.18" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit6_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.27" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit6_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.52" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit6_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
+
+        <FrameLayout
+            android:id="@+id/pit0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit6_left"
+            app:layout_constraintEnd_toStartOf="@id/pit6_right"
+            app:layout_constraintTop_toTopOf="@id/pit6_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit6_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- Bottom‐row pit1 (originally pit2) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit7_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.29" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit7_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.38" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit7_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.52" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit7_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
+
+        <FrameLayout
+            android:id="@+id/pit1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit7_left"
+            app:layout_constraintEnd_toStartOf="@id/pit7_right"
+            app:layout_constraintTop_toTopOf="@id/pit7_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit7_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- Bottom‐row pit2 (originally pit3) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit8_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.40" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit8_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.49" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit8_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.52" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit8_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
+
+        <FrameLayout
+            android:id="@+id/pit2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit8_left"
+            app:layout_constraintEnd_toStartOf="@id/pit8_right"
+            app:layout_constraintTop_toTopOf="@id/pit8_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit8_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- Bottom‐row pit3 (originally pit4) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit9_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.51" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit9_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.60" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit9_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.52" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit9_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
+
+        <FrameLayout
+            android:id="@+id/pit3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit9_left"
+            app:layout_constraintEnd_toStartOf="@id/pit9_right"
+            app:layout_constraintTop_toTopOf="@id/pit9_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit9_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- Bottom‐row pit4 (originally pit5) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit10_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.62" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit10_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.71" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit10_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.52" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit10_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
+
+        <FrameLayout
+            android:id="@+id/pit4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit10_left"
+            app:layout_constraintEnd_toStartOf="@id/pit10_right"
+            app:layout_constraintTop_toTopOf="@id/pit10_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit10_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+        <!-- Bottom‐row pit5 (originally pit6) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit11_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.73" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit11_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.82" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit11_top"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.52" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/pit11_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
+
+        <FrameLayout
+            android:id="@+id/pit5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/hole"
+            app:layout_constraintStart_toStartOf="@id/pit11_left"
+            app:layout_constraintEnd_toStartOf="@id/pit11_right"
+            app:layout_constraintTop_toTopOf="@id/pit11_top"
+            app:layout_constraintBottom_toBottomOf="@id/pit11_bottom" >
+            <!-- ← hole background -->
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Animation overlay stays on top of everything -->
     <FrameLayout
         android:id="@+id/animationOverlay"
         android:layout_width="match_parent"
